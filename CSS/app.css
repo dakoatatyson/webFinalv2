@@ -1,0 +1,20 @@
+/* */
+header img{
+    float: left;
+    width: 20%;
+    border-radius: 50%;
+}
+
+header h1{
+    float: left;
+    width: 75%;
+    padding: 30px 20px;
+}
+
+/* */
+nav li{
+    float: left;
+    width: 20%;
+    padding: 30px 0;
+}
+

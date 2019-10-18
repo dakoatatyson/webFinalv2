@@ -1,0 +1,26 @@
+:root {
+  --color-1: #77C9D4;
+  --color-2: #57BC90;
+  --color-3: #015249;
+  --color-4: #A5A5AF;
+
+  --heading-color: #015249;
+  --font-color: black;
+  }
+
+*{
+  color: var(--font-color);
+}
+
+section{
+  background-color: var(--color-4);
+}
+
+h1, h2, h3{
+  color: var(--heading-color);
+}
+
+li .active {
+  color: var(--color-2)
+}
+

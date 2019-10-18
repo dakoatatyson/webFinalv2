@@ -1,0 +1,37 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px; /* 15-25 */
+    text-align: center;
+}
+
+h1{
+    font-size: 180%; /* 180-200 */
+    white-space: 30px;
+}
+
+h2{
+    font-size: 130%; /* 130-150 */
+    white-space: 20px;
+}
+
+h3{
+    font-size: 100%; /* 100-120 */
+    white-space: 10px;
+}
+
+p{
+    margin-left: auto;
+    margin-right: auto;
+    white-space: 145%; /* 145-120 */
+    max-width: 80ch; /* 45-90 */
+    word-wrap:break-word;
+    text-align: left;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
