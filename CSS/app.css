@@ -127,6 +127,25 @@ section h1{
     width: 100%;
 }
 
+.heading-box{
+    width: 100%;
+}
+
+.heading-box h1{
+    float: left;
+    width: 95%;
+}
+.project-form-btn{
+    float: left;
+    width: 5%;
+    background-color: var(--color-4);
+    border-radius: 50%;
+}
+
+.project-form-btn:hover{
+    background-color: var(--color-2);
+}
+
 .project{
     float: left;
     width: 33%;
@@ -165,6 +184,10 @@ section h1{
 /*--- Jobs Section styles ---*/
 #jobs{
     background-color: var(--color-4);
+}
+
+tr{
+    overflow-y: scroll;
 }
 
 th {

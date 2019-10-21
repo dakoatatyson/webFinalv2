@@ -23,7 +23,7 @@
                 <li><a href="#content"><h2>CONTACT</h2></a></li>
                 <li><a href="#education"><h2>EDUCATION</h2></a></li>
                 <li><a href="#projects"><h2>PROJECTS</h2></a></li>
-                <li><a href="#work-history"><h2>WORK HISTORY</h2></a></li>
+                <li><a href="#jobs"><h2>WORK HISTORY</h2></a></li>
             </ul> 
         </nav>
 
@@ -109,41 +109,55 @@
             </section>
 
             <section id="projects">
-                <h1>Projects</h1>
-
-                <div class="projects-box">
-                    <div class="project">
-                        <div class="project-img"><img src="http://help.crossbrowsertesting.com/wp-content/uploads/2016/10/2018-11-02-15_01_26-.png" alt="Project Image Not Found"></div>
-                        <div class="description-box">
-                            <div class="project-name"><h2>Test 1</h2></div>
-                            <div class="project-description"><p>testing test 1</p></div>
-                            <div class="project-date">2014</div>
-                            <div class="project-date">2015</div>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <div class="project-img"><img src="http://help.crossbrowsertesting.com/wp-content/uploads/2016/10/2018-11-02-15_01_26-.png" alt="Project Image Not Found"></div>
-                        <div class="description-box">
-                            <div class="project-name"><h2>Test 2</h2></div>
-                            <div class="project-description"><p>testing test 2</p></div>
-                            <div class="project-date">2016</div>
-                            <div class="project-date">2017</div>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <div class="project-img"><img src="http://help.crossbrowsertesting.com/wp-content/uploads/2016/10/2018-11-02-15_01_26-.png" alt="Project Image Not Found"></div>
-                        <div class="description-box">
-                            <div class="project-name"><h2>Test 3</h2></div>
-                            <div class="project-description"><p>testing test 3</p></div>
-                            <div class="project-date">2018</div>
-                            <div class="project-date">2019</div>
-                        </div>
-                    </div>
+                <div class="heading-box">
+                    <h1>Projects</h1>
+                    <a href="project-form.php" target="_blank"><img class="project-form-btn" src="http://pluspng.com/img-png/free-png-plus-sign-plus-icon-512.png" alt="Project Form Button Icon Not Found"></a>
                 </div>
+                
+                <div class="projects-box">
+                    <?php 
+                        $servername = "localhost";
+                        $username = "app";
+                        $password = "BBv9FhR8Cubcb2cs";
+                        $dbname = "protfolio";
 
+                        // Create Connection
+                        $connection = new mysqli($servername, $username, $password, $dbname);
 
+                        //Check connection
+                        if($connection->connect_error){
+                            die("Connection failed: " + $connection->connect_error);
+                        }
+
+                        //echo("Connected........... ");
+
+                        //prepare  and bind statement to get all the projects
+                        $sql = "CALL GetProjects()";
+                        $result = $connection->query($sql);
+
+                        //make sure there are rows from the table
+                        if($result->num_rows > 0){
+                            //for each row in the table create a generated html project with the tables colums and data
+                            while ($row = $result->fetch_assoc()) {
+                                echo '
+                                    <div class="project">
+                                        <div class="project-img"><img src="http://help.crossbrowsertesting.com/wp-content/uploads/2016/10/2018-11-02-15_01_26-.png" alt="Project Image Not Found"></div>
+                                        <div class="description-box">
+                                            <div class="project-name"><h2>'.$row["project_name"].'</h2></div>
+                                            <div class="project-description"><p>'.$row["project_description"].'</p></div>
+                                            <div class="project-date">'.$row["date_started"].'</div>
+                                            <div class="project-date">'.$row["date_ended"].'</div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        } else {
+                            echo("0 results");
+                        }
+
+                        $connection->close();
+                    ?>
+                </div>
             </section>
 
             <section id="jobs">
