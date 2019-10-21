@@ -12,10 +12,6 @@
   color: var(--font-color);
 }
 
-section{
-  background-color: var(--color-4);
-}
-
 h1, h2, h3{
   color: var(--heading-color);
 }
