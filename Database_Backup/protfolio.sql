@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2019 at 12:43 AM
+-- Generation Time: Oct 24, 2019 at 12:59 AM
 -- Server version: 8.0.17
 -- PHP Version: 7.3.10
 
@@ -21,6 +21,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `protfolio`
 --
+CREATE DATABASE IF NOT EXISTS `protfolio` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `protfolio`;
+
+DELIMITER $$
+--
+-- Procedures
+--
+
+DROP PROCEDURE IF EXISTS `CreateProject`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateProject` (IN `name` VARCHAR(50), IN `description` TEXT, IN `startDate` DATE, IN `endDate` DATE)  BEGIN
+    INSERT INTO projects(project_name, project_description, date_started,date_ended)
+    VALUES(name, description, startDate, endDate);
+END$$
+
+DROP PROCEDURE IF EXISTS `GetAllProjects`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllProjects` ()  BEGIN
+    SELECT 
+        project_name,
+        project_description,
+        date_started,
+        date_ended
+    FROM
+        projects
+    ORDER BY date_started;    
+END$$
+
+DROP PROCEDURE IF EXISTS `GetProjects`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetProjects` ()  BEGIN
+    SELECT 
+        *
+    FROM
+        projects
+    ORDER BY 
+    	date_started;    
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -28,6 +65,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `projects`
 --
 
+DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `project_ID` int(11) NOT NULL,
   `project_name` varchar(50) NOT NULL,
@@ -43,8 +81,7 @@ CREATE TABLE `projects` (
 INSERT INTO `projects` (`project_ID`, `project_name`, `project_description`, `date_started`, `date_ended`) VALUES
 (12, 'Project 1', 'This is Project 1\'s description', '2014-00-00', '2015-00-00'),
 (13, 'Project 2', 'This is Project 2\'s description', '2015-00-00', '2016-00-00'),
-(14, 'Project 3', 'This is Project 3\'s description', '2016-00-00', '2017-00-00'),
-(19, 'Project 4', 'This is Project 4\'s description.', '2019-10-22', '2019-10-22');
+(14, 'Project 3', 'This is Project 3\'s description', '2016-00-00', '2017-00-00');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +103,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
